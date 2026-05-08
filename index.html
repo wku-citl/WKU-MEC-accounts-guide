@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MEC Orientation · Account Setup Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red:       #C8102E;
+      --red-dark:  #9e0b22;
+      --red-light: #f9e6e9;
+      --charcoal:  #1a1a1a;
+      --mid:       #4a4a4a;
+      --muted:     #767676;
+      --border:    #e2e2e2;
+      --bg:        #f7f7f5;
+      --white:     #ffffff;
+      --step-bg:   #fafafa;
+      --font-head: 'DM Serif Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --radius:    6px;
+      --shadow:    0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      background: var(--bg);
+      color: var(--charcoal);
+    }
+
+    /* ── Header ─────────────────────────────────────────────── */
+    header {
+      background: var(--white);
+      border-bottom: 4px solid var(--red);
+      padding: 0;
+    }
+
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 24px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .wku-badge {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      background: var(--red);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wku-badge span {
+      font-family: var(--font-head);
+      font-size: 18px;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+
+    .header-text {}
+
+    .header-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 4px;
+    }
+
+    header h1 {
+      font-family: var(--font-head);
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+
+    header p.subtitle {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ── Intro banner ───────────────────────────────────────── */
+    .intro-banner {
+      background: var(--red-light);
+      border-left: 4px solid var(--red);
+      max-width: 860px;
+      margin: 28px auto 0;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 20px;
+      font-size: 14px;
+      color: var(--mid);
+    }
+
+    .intro-banner strong { color: var(--charcoal); }
+
+    /* ── Main layout ────────────────────────────────────────── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 24px 64px;
+    }
+
+    /* ── Section card ───────────────────────────────────────── */
+    .section-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeUp 0.4s ease forwards;
+    }
+
+    .section-card:nth-child(1) { animation-delay: 0.05s; }
+    .section-card:nth-child(2) { animation-delay: 0.1s; }
+    .section-card:nth-child(3) { animation-delay: 0.15s; }
+    .section-card:nth-child(4) { animation-delay: 0.2s; }
+    .section-card:nth-child(5) { animation-delay: 0.25s; }
+    .section-card:nth-child(6) { animation-delay: 0.3s; }
+    .section-card:nth-child(7) { animation-delay: 0.35s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 22px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--red);
+      color: var(--white);
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--charcoal);
+    }
+
+    .section-body {
+      padding: 20px 22px;
+    }
+
+    /* ── Steps ──────────────────────────────────────────────── */
+    .steps {
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+
+    .steps li:last-child { border-bottom: none; padding-bottom: 0; }
+    .steps li:first-child { padding-top: 0; }
+
+    .steps li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--step-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .steps li p { font-size: 15px; color: var(--mid); }
+
+    /* ── Bullets (unordered sub-lists) ─────────────────────── */
+    .bullets {
+      list-style: none;
+      padding: 0;
+    }
+
+    .bullets li {
+      padding: 8px 0 8px 18px;
+      position: relative;
+      font-size: 15px;
+      color: var(--mid);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bullets li:last-child { border-bottom: none; }
+
+    .bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 17px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    /* ── Links ──────────────────────────────────────────────── */
+    a {
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    a:hover { border-color: var(--red); }
+    a:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; border-radius: 2px; }
+
+    /* ── Inline note ────────────────────────────────────────── */
+    .note {
+      margin-top: 14px;
+      padding: 12px 16px;
+      background: var(--red-light);
+      border-radius: var(--radius);
+      font-size: 13.5px;
+      color: var(--mid);
+    }
+
+    .note strong { color: var(--charcoal); }
+
+    /* ── Prose paragraph ────────────────────────────────────── */
+    .prose {
+      font-size: 15px;
+      color: var(--mid);
+      margin-bottom: 14px;
+    }
+
+    /* ── Courses list ───────────────────────────────────────── */
+    .course-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .course-item:last-child { border-bottom: none; }
+
+    .course-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--red);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .course-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer-rule {
+      max-width: 860px;
+      margin: 0 auto 20px;
+      padding: 0 24px;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .header-inner { flex-direction: column; gap: 12px; }
+      .section-body { padding: 16px; }
+      .section-header { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="header-inner">
+      <div class="wku-badge" aria-hidden="true"><span>WKU</span></div>
+      <div class="header-text">
+        <p class="header-eyebrow">Western Kentucky University</p>
+        <h1>Master Educator Course<br>Account Setup Guide</h1>
+        <p class="subtitle">Follow along during orientation &mdash; keep this page open for reference throughout the summer.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="intro-banner" role="note">
+      <strong>Before we begin:</strong> Have your personal email address accessible and your personal device ready. We'll walk through each section together &mdash; raise your hand (or use the chat) at any point if you fall behind.
+    </div>
+
+    <!-- 1. WKU Account Lookup -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-num" aria-hidden="true">1</span>
+        <h2 class="section-title">WKU Account Management</h2>
+      </div>
+      <div class="section-body">
+        <p class="prose">Use the WKU Account Management portal to retrieve your credentials. You will need your last name, date of birth, and last four digits of your SSN.</p>
+        <p class="prose">The portal will display your:</p>
+        <ul class="bullets">
+          <li><strong>WKU ID</strong> &mdash; your university identification number</li>
+          <li><strong>NetID</strong> &mdash; used to log in to university systems</li>
+          <li><strong>TopperMail address</strong> &mdash; your official WKU email (format: NetID@topper.wku.edu)</li>
+        </ul>
+        <p class="note">A <strong>password reset option</strong> is available on this page if needed. Have your information ready before clicking the link below.</p>
+        <p style="margin-top:14px;font-size:15px;"><a href="https://www.wku.edu/its/accounts/manage/" target="_blank" rel="noopener">Open WKU Account Management &rarr;</a></p>
+      </div>
+    </div>
+
+    <!-- 2. Microsoft Authenticator -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-num" aria-hidden="true">2</span>
+        <h2 class="section-title">Setting Up Microsoft Authenticator</h2>
+      </div>
+      <div class="section-body">
+        <p class="prose">Multi-factor authentication is required to access your WKU accounts. Install the Microsoft Authenticator app on your mobile device before logging in for the first time.</p>
+        <p style="font-size:15px;"><a href="https://td.wku.edu/TDClient/34/Portal/KB/ArticleDet?ID=3435" target="_blank" rel="noopener">WKU Authenticator Setup Instructions (all devices) &rarr;</a></p>
+      </div>
+    </div>
+
+    <!-- 3. TopperMail / Microsoft 365 -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-num" aria-hidden="true">3</span>
+        <h2 class="section-title">Accessing WKU TopperMail &amp; Microsoft 365</h2>
+      </div>
+      <div class="section-body">
+        <p class="prose">Your WKU account includes access to Microsoft 365 applications, including Outlook (TopperMail), Word, PowerPoint, and OneDrive.</p>
+        <ol class="steps">
+          <li><p>Go to <a href="https://www.office.com/" target="_blank" rel="noopener">office.com</a> and click <strong>Sign In</strong>.</p></li>
+          <li><p>Choose <strong>Work or school account</strong>.</p></li>
+          <li><p>Enter your WKU TopperMail address and password.</p></li>
+          <li><p>Authenticate using the <strong>Microsoft Authenticator</strong> app.</p></li>
+          <li><p>You will land on the <strong>Copilot</strong> home page. Click <strong>Apps &rarr; More Apps</strong> and select <strong>Outlook</strong> to open your WKU email.</p></li>
+        </ol>
+        <div class="note">
+          <strong>Already have a Microsoft account?</strong> You can switch between accounts by clicking your <strong>Account Manager</strong> icon in the top right corner and selecting <em>Sign in with a different account</em>.
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Forwarding TopperMail -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-num" aria-hidden="true">4</span>
+        <h2 class="section-title">Forwarding Your WKU TopperMail</h2>
+      </div>
+      <div class="section-body">
+        <p class="prose">We recommend forwarding your WKU email to an address you check regularly so you don't miss important communications from instructors.</p>
+        <ol class="steps">
+          <li><p>In Outlook, click the <strong>Settings</strong> (gear) icon in the top right corner.</p></li>
+          <li><p>Type <strong>"Forwarding"</strong> in the search box and select <strong>Forwarding</strong> from the results.</p></li>
+          <li><p>Click <strong>Enable forwarding</strong> and enter the email address you want mail sent to.</p></li>
+          <li><p>Save your changes.</p></li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 5. Installing Microsoft Office -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-num" aria-hidden="true">5</span>
+        <h2 class="section-title">Installing Microsoft Office on Your Device</h2>
+      </div>
+      <div class="section-body">
+        <p class="prose">Your WKU account includes free access to the full Microsoft Office suite for installation on personal devices.</p>
+        <p style="font-size:15px;margin-bottom:14px;"><a href="https://td.wku.edu/TDClient/34/Portal/KB/ArticleDet?ID=2391" target="_blank" rel="noopener">WKU Instructions: Installing Microsoft 365 on a Personal Device &rarr;</a></p>
+        <p class="note">You can also find this article by visiting <strong>wku.edu</strong> and searching <em>"Microsoft Office"</em> &mdash; it will be the first result.</p>
+      </div>
+    </div>
+
+    <!-- 6. Accessing ROTC Blackboard -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-num" aria-hidden="true">6</span>
+        <h2 class="section-title">Accessing ROTC Blackboard</h2>
+      </div>
+      <div class="section-body">
+        <p class="prose">All MEC courses are housed in ROTC's Blackboard instance. This is separate from any other Blackboard system you may have used previously. Use your individual login credentials to access the platform.</p>
+        <p style="font-size:15px;"><a href="rotc.blackbaord.com" target="_blank" rel="noopener">Open ROTC Blackboard &rarr;</a></p>
+      </div>
+    </div>
+
+    <!-- 7. Updating Your Blackboard Email -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-num" aria-hidden="true">7</span>
+        <h2 class="section-title">Updating Your ROTC Blackboard Email</h2>
+      </div>
+      <div class="section-body">
+        <p class="prose">Instructors will use your Blackboard email address to contact you &mdash; especially during online practicum courses. Please update this to an address you check daily.</p>
+        <ol class="steps">
+          <li><p>In ROTC Blackboard, click the <strong>down-facing arrow</strong> next to your name in the upper right corner.</p></li>
+          <li><p>Select <strong>Settings</strong>.</p></li>
+          <li><p>Click <strong>Personal Information</strong>.</p></li>
+          <li><p>Click <strong>Edit Personal Information</strong>.</p></li>
+          <li><p>Verify or update your email address.</p></li>
+          <li><p>Click <strong>Submit</strong> in the bottom right corner to save.</p></li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 8. Your Courses -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-num" aria-hidden="true">8</span>
+        <h2 class="section-title">Your MEC Courses</h2>
+      </div>
+      <div class="section-body">
+        <p class="prose">Once you are logged in to ROTC Blackboard, your course list should include the following:</p>
+        <div class="course-item">
+          <div class="course-dot" aria-hidden="true"></div>
+          <span class="course-name">MEC702-2026_WKU Student Portal Summer</span>
+        </div>
+        <div class="course-item">
+          <div class="course-dot" aria-hidden="true"></div>
+          <span class="course-name">MEC702-2026_Teaching and Learning_Super</span>
+        </div>
+        <div class="note" style="margin-top:16px;">If a course is missing from your list, please let us know during the orientation session.</div>
+      </div>
+    </div>
+
+  </main>
+
+  <hr class="footer-rule" />
+  <footer>
+    <p>Western Kentucky University &mdash; Master Educator Course</p>
+    <p>For assistance, please raise your hand or use the session chat.</p>
+  </footer>
+
+</body>
+</html>
